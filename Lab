@@ -1,0 +1,66 @@
+Here's how to install **labwc-tweaks** on Void Linux. Note that it's **not in the official Void repos**, so you'll need to build it from source.
+
+---
+
+## What is labwc-tweaks?
+
+labwc-tweaks is a GUI settings application for labwc that manages settings in `rc.xml` and the environment. [GitHub](https://github.com/labwc/labwc-tweaks) The current version uses **Qt6** as its toolkit.
+
+---
+
+## Step 1 — Install Dependencies
+
+The build dependencies are: `libxml2`, `qt6-base`, `cmake`, `git`, and `qt6-tools` (make-time). [Arch Linux](https://aur.archlinux.org/packages/labwc-tweaks-git)
+
+Install them via xbps:
+
+```bash
+sudo xbps-install -S cmake git qt6-base-devel qt6-tools libxml2-devel
+```
+
+---
+
+## Step 2 — Clone the Repository
+
+```bash
+git clone https://github.com/labwc/labwc-tweaks
+cd labwc-tweaks
+```
+
+---
+
+## Step 3 — Build with CMake
+
+`CMAKE_INSTALL_PREFIX` has to be set to `/usr` on most operating systems. Run:
+
+```bash
+cmake -B build -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr -W no-dev
+cmake --build build --verbose
+```
+[GitHub](https://github.com/labwc/labwc-tweaks)
+
+---
+
+## Step 4 — Install
+
+Using `sudo make install` is discouraged; instead use the system package manager where possible. [GitHub](https://github.com/labwc/labwc-tweaks) However, since there's no Void package for this, you can install it directly from the build output:
+
+```bash
+sudo cmake --install build
+```
+
+This puts the binary in `/usr/bin/labwc-tweaks` and data files in their standard locations.
+
+---
+
+## Alternative: GTK version
+
+If you prefer GTK over Qt, there's a separate fork: **labwc-tweaks-gtk** is a GTK fork of labwc-tweaks, and it installs the binary to `/usr/local/bin`. [GitHub](https://github.com/labwc/labwc-tweaks-gtk) It's available at `https://github.com/labwc/labwc-tweaks-gtk` and uses `meson` instead of cmake. Its dependencies (`gtk3`, `libxml2`, `glib2`) are all in the Void repos.
+
+---
+
+## Tips
+
+- If `qt6-base-devel` or `qt6-tools` aren't found by exact name, search with: `xbps-query -Rs qt6`
+- You can set `LABWC_CONFIG_DIR` to point to a non-standard config location if needed.
+- Since this is a manual install, you'll need to rebuild manually to update it.
