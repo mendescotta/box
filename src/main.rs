@@ -1,12 +1,11 @@
 mod state;
-mod layout;
+mod window;
 mod input;
 mod render;
-mod backend;
-mod window;
-mod config;
+mod layout;
 
 fn main() -> anyhow::Result<()> {
     tracing_subscriber::fmt::init();
-    state::run()
+    let mut state = state::State::new()?;
+    state.run()
 }
