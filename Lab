@@ -64,3 +64,4 @@ If you prefer GTK over Qt, there's a separate fork: **labwc-tweaks-gtk** is a GT
 - If `qt6-base-devel` or `qt6-tools` aren't found by exact name, search with: `xbps-query -Rs qt6`
 - You can set `LABWC_CONFIG_DIR` to point to a non-standard config location if needed.
 - Since this is a manual install, you'll need to rebuild manually to update it.
+https://chatgpt.com/share/69fd1530-4694-8331-8003-7c0e84022ba3
